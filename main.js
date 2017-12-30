@@ -3,12 +3,29 @@ const CSSselect = require('css-select');
 const CSSselectPatched = require('./css-select-patched/index.js');
 const adapter = require('css-select-browser-adapter');
 
+const log = require('./log');
 
-go = async () => {
-  const log = require('./log');
-
+const runTests = async () => {
   const queries = [
-    '.non-existing div div div div div div div span',
+    'div *',
+    'div div *',
+    'div div div *',
+    'div div div div *',
+    'div div div div div *',
+    'div div div div div div *',
+    'div div div div div div div *',
+    'div div div div div div div div *',
+    'div div div div div div div div div *',
+    'div div div div div div div div div div *',
+    'div div div div div div div div div div div *',
+    'div div div div div div div div div div div div *',
+    'div div div div div div div div div div div div div *',
+    'div div div div div div div div div div div div div div *',
+    'div div div div div div div div div div div div div div div *',
+    'div div div div div div div div div div div div div div div div *',
+    'div div div div div div div div div div div div div div div div div *',
+    'div div div div div div div div div div div div div div div div div div *',
+    'div div div div div div div div div div div div div div div div div div div *',
     'div .non-existing div div div div div div div div div div div div div a',
     'div div div div div div div div div div div div div div a',
     'body div div div div div div div div div div div div div div div div div div div div div *',
@@ -22,7 +39,6 @@ go = async () => {
     'div',
   ];
 
-  log(['QUERY', '1.3.0RC0 TIME', 'ELS', 'PATCHED TIME', 'ELS', 'SHALLOWEQUAL', 'TIME % (>100% means better)']);
   for (query of queries) {
     const t0 = Date.now();
     const elsOriginal = CSSselect(query, document.body, { adapter });
@@ -37,10 +53,15 @@ go = async () => {
       `${t2 - t1}ms`,
       elsPatched.length,
       shallowEqualArrays(elsOriginal, elsPatched),
-      `${Math.round((t1 - t0) / (t2 - t1) * 100)}%`
+      `${Math.round((t1 - t0) / (t2 - t1) * 100) - 100}%`
     ]);
     await new Promise(resolve => setTimeout(resolve, 0));
   };
 };
 
-go();
+const go = async () => {
+  log(['QUERY', '1.3.0RC0 TIME', 'ELS', 'PATCHED TIME', 'ELS', 'SHALLOWEQUAL', 'SPEED UP']);
+  await runTests();
+  log(['DONE']);
+};
+go()

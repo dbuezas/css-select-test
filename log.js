@@ -1,5 +1,5 @@
 const tableEl = document.createElement('table');
-tableEl.style = 'margin: 10px; border: 1px solid grey; padding: 3px;';
+tableEl.style = 'margin: 10px; border: 1px solid grey; padding: 3px; font-size: 10px;';
 document.body.prepend(tableEl);
 module.exports = (row) => {
   const rowEl = document.createElement('tr');
