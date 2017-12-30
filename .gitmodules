@@ -1,0 +1,3 @@
+[submodule "css-select-patched"]
+	path = css-select-patched
+	url = git@github.com:dbuezas/css-select.git

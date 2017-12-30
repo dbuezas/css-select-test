@@ -1,0 +1,20 @@
+{
+  "name": "css-select-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd css-select-patched && npm i && cd .. && browserify main.js > bundle.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "css-select": "^1.3.0-rc0",
+    "css-select-browser-adapter": "git+https://github.com/nrkn/css-select-browser-adapter.git",
+    "shallow-equal": "^1.0.0"
+  },
+  "devDependencies": {
+    "browserify": "^14.5.0"
+  }
+}
